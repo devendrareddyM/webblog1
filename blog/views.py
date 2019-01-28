@@ -1,9 +1,12 @@
+from django.contrib.auth.models import User
+from django.db.models import Q 
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Post
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
+
 # Create your views here.
 
 def post_list(request):
@@ -40,3 +43,7 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+def Search(request):
+        query = request.GET.get('q')
+        results = Post.objects.filter(Q(published_date__year=query))
+        return render(request, 'blog/search.html', {'results': results})

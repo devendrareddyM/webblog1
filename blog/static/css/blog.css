@@ -51,3 +51,6 @@ h1, h2, h3, h4 {
 .post h2 a, .post h2 a:visited {
     color: blue;
 }
+body {
+    background: white url("static/css/images/pic.jpg") no-repeat;
+}

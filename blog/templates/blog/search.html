@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+    <head>
+        <title>Search</title>
+       
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <img src='{% static "css/images/std.jpg" %}'/>
+            <a class="btn btn-default" href="{% url 'Search' %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        
+    <form method="POST">{% csrf_token %}
+          
+    	 <input type='text' name='q' placeholder="Enter Search Keyword" value='{{ request.GET.q }}' id='intry'>
+    <input type='submit' value='Search' class='button_1' id='sub1'>
+    <ul>
+{% if results %}
+   {% for published_date in results %}
+       {{ results.published_date }}
+    {% endfor %}
+{% endif %}</ul>
+</form></br>
+</body>
+ </html>
