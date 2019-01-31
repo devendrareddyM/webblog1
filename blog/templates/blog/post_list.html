@@ -3,7 +3,7 @@
 {% block content %}
 <br>
 <form method="GET" class="post-form">{% csrf_token %}
-    	 <input type='text' name='q'placeholder="enter title,name,year"value='{{ request.GET.q }}' id='intry'>
+    	 <input type='text' name='q'placeholder="enter title,name"value='{{ request.GET.q }}' id='intry'>
          <input type='submit' value='Search' class='button_1' id='sub1'>
         {% if results %}
         <h2>its available please scroll down</h2>
