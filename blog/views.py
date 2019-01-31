@@ -10,8 +10,12 @@ from .forms import PostForm
 # Create your views here.
 
 def post_list(request):
-    post = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html', {'post': post})
+    post = Post.objects.all()
+    if(request):
+        query = request.GET.get("q")
+        results = Post.objects.filter(Q(title=query) | Q(name=query))
+        print (results)
+    return render(request, 'blog/post_list.html', {'post': post , 'results': results})
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})
@@ -45,5 +49,7 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 def Search(request):
         query = request.GET.get('q')
-        results = Post.objects.filter(Q(published_date__year=query))
+        print (query)
+        results = Post.objects.filter(Q(title=query) | Q(published_date__year=query) | Q(name=query))
+        print (results)
         return render(request, 'blog/search.html', {'results': results})

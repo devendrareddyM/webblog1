@@ -9,17 +9,17 @@
     <body>
         <img src='{% static "css/images/std.jpg" %}'/>
             <a class="btn btn-default" href="{% url 'Search' %}"><span class="glyphicon glyphicon-pencil"></span></a>
-        
-    <form method="POST">{% csrf_token %}
-          
+        <form method="GET" class="post-form">{% csrf_token %}          
     	 <input type='text' name='q' placeholder="Enter Search Keyword" value='{{ request.GET.q }}' id='intry'>
-    <input type='submit' value='Search' class='button_1' id='sub1'>
-    <ul>
-{% if results %}
-   {% for published_date in results %}
-       {{ results.published_date }}
-    {% endfor %}
-{% endif %}</ul>
-</form></br>
+         <input type='submit' value='Search' class='button_1' id='sub1'>
+         {% if results %}
+        <h2>its available </h2>
+        {% elif results in results %}
+            <h2>it is available</h2>
+        {% else %}
+            <h2>sorry not available</h2>
+        {% endif %} 
+        
+</form>
 </body>
  </html>
