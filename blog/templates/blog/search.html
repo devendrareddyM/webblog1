@@ -10,7 +10,7 @@
         <img src='{% static "css/images/std.jpg" %}'/>
             <a class="btn btn-default" href="{% url 'Search' %}"><span class="glyphicon glyphicon-pencil"></span></a>
         <form method="GET" class="post-form">{% csrf_token %}          
-    	 <input type='text' name='q' placeholder="Enter Search Keyword" value='{{ request.GET.q }}' id='intry'>
+    	 <input type='text' name='q' placeholder="Enter title or year" value='{{ request.GET.q }}' id='intry'>
          <input type='submit' value='Search' class='button_1' id='sub1'>
          {% if results %}
         <h2>its available </h2>
